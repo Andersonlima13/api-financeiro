@@ -20,7 +20,7 @@ public class FirebaseService {
     public FirebaseService() {
         try {
             FileInputStream serviceAccount = new FileInputStream(
-                    "src/main/resources/bd-controle-gastos-firebase-adminsdk-fbsvc-21f4dff4e8.json");
+                    "/etc/secrets//bd-controle-gastos-firebase-adminsdk-fbsvc-21f4dff4e8.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
