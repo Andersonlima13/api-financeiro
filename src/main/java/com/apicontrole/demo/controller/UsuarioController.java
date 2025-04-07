@@ -35,7 +35,6 @@ public class UsuarioController {
         }
     }
 
-    /// login user
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUsuario(@RequestBody Usuario usuario) {
         System.out.println("Recebendo login: " + usuario.getEmail() + ", " + usuario.getPassword());
