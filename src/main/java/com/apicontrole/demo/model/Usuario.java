@@ -2,7 +2,7 @@ package com.apicontrole.demo.model;
 
 public class Usuario {
 
-    private String name; // Alterado 'nome' para 'name'
+    private String name; 
     private String email;
     private String password;
 
@@ -14,11 +14,11 @@ public class Usuario {
     }
 
     // Getters e Setters
-    public String getNome() { // Mantido como 'getNome()'
+    public String getNome() { 
         return name;
     }
 
-    public void setNome(String nome) { // Mantido como 'setNome()'
+    public void setNome(String nome) { 
         this.name = nome;
     }
 
