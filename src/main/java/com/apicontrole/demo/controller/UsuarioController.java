@@ -21,7 +21,7 @@ public class UsuarioController {
     public ResponseEntity<Map<String, String>> criarUsuario(@RequestBody Usuario usuario) {
         // Logando os dados recebidos
         System.out.println(
-                "Recebendo usuário: " + usuario.getNome() + ", " + usuario.getEmail() + ", " + usuario.getPassword());
+                "Recebendo usuário: " + usuario.getName() + ", " + usuario.getEmail() + ", " + usuario.getPassword());
 
         String resultado = firebaseService.salvarUsuario(usuario);
         Map<String, String> response = new HashMap<>();
@@ -37,8 +37,6 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> loginUsuario(@RequestBody Usuario usuario) {
-        System.out.println("Recebendo login: " + usuario.getEmail() + ", " + usuario.getPassword());
-
         boolean loginValido = firebaseService.verificarUsuario(usuario.getEmail(), usuario.getPassword());
 
         Map<String, String> response = new HashMap<>();
@@ -51,5 +49,11 @@ public class UsuarioController {
             return ResponseEntity.status(401).body(response); // Erro caso as credenciais sejam inválidas
         }
     }
+
+    
+
+
+
+
 
 }

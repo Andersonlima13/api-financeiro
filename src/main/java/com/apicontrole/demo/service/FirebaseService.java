@@ -41,7 +41,7 @@ public class FirebaseService {
         try {
             // Criando um Map com os dados do usuário
             Map<String, Object> usuarioData = new HashMap<>();
-            usuarioData.put("name", usuario.getNome());
+            usuarioData.put("name", usuario.getName());
             usuarioData.put("email", usuario.getEmail());
             usuarioData.put("password", usuario.getPassword()); // Armazenando a senha (não recomendado em produção sem
                                                                 // criptografia)
