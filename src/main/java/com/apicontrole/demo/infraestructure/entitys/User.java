@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AutoValue.Builder
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
 
@@ -21,6 +22,9 @@ public class User {
 
     @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column
     private Integer accounts;
