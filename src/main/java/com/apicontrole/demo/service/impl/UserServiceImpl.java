@@ -5,14 +5,18 @@ import com.apicontrole.demo.dto.UserResponseDTO;
 import com.apicontrole.demo.infraestructure.entitys.User;
 import com.apicontrole.demo.infraestructure.repository.UserRepository;
 import com.apicontrole.demo.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository){
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -20,7 +24,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .nome(dto.getNome())
                 .email(dto.getEmail())
-                .password(dto.getPassword())
+                .password(passwordEncoder.encode(dto.getPassword()))
                 .accounts(0)
                 .saldo(0)
                 .build();
@@ -30,4 +34,9 @@ public class UserServiceImpl implements UserService {
         return  new UserResponseDTO(saved.getId(), saved.getNome(),saved.getEmail());
 
     }
+
+
+
+
+
 }
