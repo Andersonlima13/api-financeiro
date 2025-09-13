@@ -77,15 +77,14 @@
     	<artifactId>postgresql</artifactId>
     	<version>42.7.1</version> <!-- Verifique a versão mais recente -->
 		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
 
-
-
-
-
-
-
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

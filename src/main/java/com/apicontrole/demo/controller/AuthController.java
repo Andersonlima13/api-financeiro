@@ -1,12 +1,9 @@
 package com.apicontrole.demo.controller;
 
-
-import com.apicontrole.demo.model.Usuario;
+import com.apicontrole.demo.infraestructure.entitys.User;
+import com.apicontrole.demo.infraestructure.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,21 +12,25 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> loginUsuario(@RequestBody Usuario usuario) {
-        boolean loginValido = firebaseService.verificarUsuario(usuario.getEmail(), usuario.getPassword());
+    private final UserRepository userRepository;
 
-        Map<String, String> response = new HashMap<>();
-
-        if (loginValido) {
-            response.put("message", "Login bem-sucedido!");
-            return ResponseEntity.ok(response); // Resposta com sucesso no login
-        } else {
-            response.put("message", "Credenciais inválidas!");
-            return ResponseEntity.status(401).body(response); // Erro caso as credenciais sejam inválidas
-        }
+    public AuthController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
+    // Método para criar usuário
+    @PostMapping("/create")
+    public ResponseEntity<Map<String, String>> criarUser(@RequestBody User user) {
+        System.out.println("Recebendo usuário: " + user.getNome() + ", " + user.getEmail());
 
-
+        Map<String, String> response = new HashMap<>();
+        try {
+            userRepository.save(user);
+            response.put("message", "Usuário criado com sucesso!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "Erro ao criar usuário: " + e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
+    }
 }
