@@ -1,11 +1,9 @@
 package com.apicontrole.demo.controller;
 
-import com.apicontrole.demo.dto.LoginDTO;
-import com.apicontrole.demo.dto.UserCreateDTO;
-import com.apicontrole.demo.dto.UserResponseDTO;
+import com.apicontrole.demo.dto.user.LoginDTO;
+import com.apicontrole.demo.dto.user.UserCreateDTO;
 import com.apicontrole.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,8 +22,8 @@ public class AuthController {
 
     // Método para criar usuário
     @PostMapping("/create")
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateDTO dto) {
-        UserResponseDTO response = userService.createUser(dto);
+    public ResponseEntity<LoginDTO.UserResponseDTO> createUser(@RequestBody UserCreateDTO dto) {
+        LoginDTO.UserResponseDTO response = userService.createUser(dto);
         return ResponseEntity.ok(response);
     }
 

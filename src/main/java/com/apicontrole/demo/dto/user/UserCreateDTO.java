@@ -1,4 +1,4 @@
-package com.apicontrole.demo.dto;
+package com.apicontrole.demo.dto.user;
 
 import lombok.Data;
 

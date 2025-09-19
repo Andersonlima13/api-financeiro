@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api")
 public class HelloController {
 
-    @GetMapping("/hello") // Define a rota GET /api/hello
-    public Saudacao hello() {
-        return new Saudacao("Olá, API funcionando!", "Teste");
+    @GetMapping("/server") // Define a rota GET /api/hello
+    public Init server() {
+        return new Init("Rota api/server");
 
     }
 

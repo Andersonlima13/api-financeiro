@@ -17,13 +17,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Se futuramente você tiver roles/perfis, retorna aqui
         return Collections.emptyList();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return user.getPassword() ;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.apicontrole.demo.service.impl;
 
 import com.apicontrole.demo.config.JwtUtil;
-import com.apicontrole.demo.dto.UserCreateDTO;
-import com.apicontrole.demo.dto.UserResponseDTO;
+import com.apicontrole.demo.dto.user.LoginDTO;
+import com.apicontrole.demo.dto.user.UserCreateDTO;
 import com.apicontrole.demo.exceptionHandler.EmailAlreadyExistsException;
 import com.apicontrole.demo.infraestructure.entitys.User;
 import com.apicontrole.demo.infraestructure.repository.UserRepository;
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO createUser(UserCreateDTO dto){
+    public LoginDTO.UserResponseDTO createUser(UserCreateDTO dto){
         if (userRepository.findByEmail(dto.getEmail()).isPresent()){
             throw new EmailAlreadyExistsException("Email já está em uso!");
         }
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         User saved = userRepository.save(user);
 
-        return  new UserResponseDTO(saved.getId(), saved.getNome(),saved.getEmail());
+        return  new LoginDTO.UserResponseDTO(saved.getId(), saved.getNome(),saved.getEmail());
 
     }
 
@@ -57,14 +57,11 @@ public class UserServiceImpl implements UserService {
         return jwtUtil.generateToken(user.getEmail());
     }
 
+
+
    public User getUser(Integer id){
         return userRepository.findById(id).orElseThrow( () -> new RuntimeException("usuario nao encontrado"));
    }
-
-
-
-
-
 
 
 }

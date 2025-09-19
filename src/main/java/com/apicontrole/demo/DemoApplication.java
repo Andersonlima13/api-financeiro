@@ -16,8 +16,8 @@ public class DemoApplication {
 	@Bean
 	ApplicationRunner runner() {
 		return args -> {
-			var saudacao = new Saudacao("saudacao", "seila");
-			System.out.println(saudacao);
+			var msg = new Init("Rodando na porta 8080");
+			System.out.println(msg);
 		};
 	}
 }
