@@ -4,6 +4,9 @@ import com.google.auto.value.AutoValue;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,5 +33,8 @@ public class Budget {
 
     @Column(nullable = false)
     private Double valor_gasto;
+
+    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Expenses> expenses = new ArrayList<>();
 
 }
