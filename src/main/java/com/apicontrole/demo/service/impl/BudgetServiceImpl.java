@@ -49,17 +49,29 @@ public class BudgetServiceImpl implements BudgetService {
         return budgetRepository.findAll();
     }
 
-    public Budget getBudget(Integer id){
+    public Budget getBudgetById(Integer id){
         return budgetRepository.findById(id).orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
     }
 
-    public Budget deleteBudget(Integer id){
+
+    public Budget deleteBudgetById(Integer id){
         Budget budget = budgetRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
         budgetRepository.deleteById(id);
         return budget;
     }
 
+    public Budget updateBudgetById(Integer id, @NotNull BudgetCreateDTO dto) {
+        Budget updatedBudget = budgetRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Orcamento não encontrado"));
+        updatedBudget.setLimite(dto.getLimite());
+        updatedBudget.setNome(dto.getNome());
+
+        return budgetRepository.save(updatedBudget);
+
+
+
+    }
 
 
 }

@@ -8,4 +8,7 @@ import java.util.List;
 public interface BudgetService {
     List<Budget> getAllBudgets();
     BudgetCreateDTO.BudgetResponse createBudget(BudgetCreateDTO dto, String email);
+    Budget getBudgetById(Integer id);
+    Budget deleteBudgetById(Integer id);
+    Budget updateBudgetById(Integer id, BudgetCreateDTO dto);
 }
