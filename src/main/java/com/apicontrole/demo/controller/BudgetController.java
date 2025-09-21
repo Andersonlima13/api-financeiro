@@ -28,9 +28,14 @@ public class BudgetController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Budget>>getAllBudgets(){
-        List<Budget> budgets = budgetService.getAllBudgets();
+    public ResponseEntity<List<BudgetCreateDTO.BudgetResponse>>getAllBudgets(){
+        List<BudgetCreateDTO.BudgetResponse> budgets = budgetService.getAllBudgets()
+        .stream().map( budget -> new BudgetCreateDTO.BudgetResponse
+                        (budget.getId(), budget.getLimite(), budget.getNome())).toList();
+
         return ResponseEntity.ok(budgets);
+
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.apicontrole.demo.infraestructure.entitys;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.google.auto.value.AutoValue;
 import jakarta.persistence.*;
 import lombok.*;
