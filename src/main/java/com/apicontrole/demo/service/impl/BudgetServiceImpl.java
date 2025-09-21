@@ -44,16 +44,17 @@ public class BudgetServiceImpl implements BudgetService {
 
     }
 
-
+    @Override
     public List<Budget> getAllBudgets(){
         return budgetRepository.findAll();
     }
 
+    @Override
     public Budget getBudgetById(Integer id){
         return budgetRepository.findById(id).orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
     }
 
-
+    @Override
     public Budget deleteBudgetById(Integer id){
         Budget budget = budgetRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
@@ -61,6 +62,7 @@ public class BudgetServiceImpl implements BudgetService {
         return budget;
     }
 
+    @Override
     public Budget updateBudgetById(Integer id, @NotNull BudgetCreateDTO dto) {
         Budget updatedBudget = budgetRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Orcamento não encontrado"));
