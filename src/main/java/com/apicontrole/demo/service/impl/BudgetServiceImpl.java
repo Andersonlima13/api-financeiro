@@ -6,7 +6,10 @@ import com.apicontrole.demo.infraestructure.entitys.User;
 import com.apicontrole.demo.infraestructure.repository.BudgetRepository;
 import com.apicontrole.demo.infraestructure.repository.UserRepository;
 import com.apicontrole.demo.service.BudgetService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BudgetServiceImpl implements BudgetService {
@@ -22,7 +25,7 @@ public class BudgetServiceImpl implements BudgetService {
 
 
     @Override
-    public BudgetCreateDTO.BudgetResponse createBudget(BudgetCreateDTO dto, String email){
+    public BudgetCreateDTO.BudgetResponse createBudget(@NotNull BudgetCreateDTO dto, String email){
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("usuario não encontrado"));
 
@@ -39,7 +42,24 @@ public class BudgetServiceImpl implements BudgetService {
         return new BudgetCreateDTO.BudgetResponse(saved.getId(),saved.getLimite(),saved.getNome());
 
 
-
-
     }
+
+
+    public List<Budget> getAllBudgets(){
+        return budgetRepository.findAll();
+    }
+
+    public Budget getBudget(Integer id){
+        return budgetRepository.findById(id).orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
+    }
+
+    public Budget deleteBudget(Integer id){
+        Budget budget = budgetRepository.findById(id)
+                .orElseThrow( () -> new RuntimeException("Orçamento não encontrado"));
+        budgetRepository.deleteById(id);
+        return budget;
+    }
+
+
+
 }
