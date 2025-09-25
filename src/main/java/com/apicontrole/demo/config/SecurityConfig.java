@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // desabilita CSRF em APIs REST
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll() // libera cadastro/login
-                        .anyRequest().authenticated()           // qualquer outro endpoint exige login
+                        .anyRequest().permitAll()           // qualquer outro endpoint exige login
                 )
         .addFilterBefore(jwtAuthFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 

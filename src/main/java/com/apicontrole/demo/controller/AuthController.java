@@ -20,7 +20,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // Método para criar usuário
     @PostMapping("/create")
     public ResponseEntity<LoginDTO.UserResponseDTO> createUser(@RequestBody UserCreateDTO dto) {
         LoginDTO.UserResponseDTO response = userService.createUser(dto);
